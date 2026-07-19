@@ -164,9 +164,10 @@ joined <- joined %>% dplyr::group_by(year, neighbourhood) %>%
 # get list of 158 census designated neighborhoods in Toronto
 # hyperlink to data: https://www.toronto.ca/city-government/data-research-maps/neighbourhoods-communities/neighbourhood-profiles/about-toronto-neighbourhoods/
 
-# 2. Create a temporary file path on your machine
+# temporary file path
 tmp <- tempfile(fileext = ".xlsx")
 
+# call neighbourhood profiles - contents include neighbourhood names and other data
 readr::write_file(
   readr::read_file_raw(
     "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/6e19a90f-971c-46b3-852c-0c48c436d1fc/resource/19d4a806-7385-4889-acf2-256f1e079060/download/neighbourhood-profiles-2021-158-model.xlsx"),
@@ -181,7 +182,7 @@ neighbourhoods <- neighbourhoods[-1] # drop first element
 # as data frame
 neighbourhoods <- as.data.frame(neighbourhoods); colnames(neighbourhoods) <- c("neighbourhood")
 
-# complete grid skeleton for the 158 neighborhoods for all available years
+# complete grid skeleton for the 158 neighborhoods for all years that have available data 
 grid_skeleton <- tidyr::crossing(
   neighbourhood = neighbourhoods$neighbourhood,
   year = 2004:2026
@@ -190,7 +191,7 @@ grid_skeleton <- tidyr::crossing(
 # join aggregated data to this skeleton
 joined <- grid_skeleton %>%
   dplyr::left_join(joined, by = c("neighbourhood", "year")) %>%
-    dplyr::mutate( # 3. Clean up the missing data fields
+    dplyr::mutate( # recode = 0 to clean up missing data fields
     homicides = tidyr::replace_na(homicides, 0),
     shootings = tidyr::replace_na(shootings, 0)
     ) %>%
