@@ -65,24 +65,25 @@ moran_shootings <- spdep::moran.test(geocoordinates$shootings, weights_list)
 # Moran's I scatterplot
 ggplot2::ggplot(geocoordinates, ggplot2::aes(x = shootings_scaled, y = lag_scaled)) +
  
-  # Visual quadrant divider lines intersecting the origin point
+  # quadrant divider lines that intersect the origin point
   ggplot2::geom_vline(xintercept = 0, color = "#A0A0A0", linetype = "dashed") +
   ggplot2::geom_hline(yintercept = 0, color = "#A0A0A0", linetype = "dashed") +
   
-  # Plot the neighborhoods as data markers
-  # Standardize points matching your preferred red/crimson look with transparency
+  # plot the neighborhoods as data markers
   ggplot2::geom_point(color = "#990000", alpha = 0.6, size = 2.5) +
   
-  # The slope of this line is mathematically identical to the Global Moran's I index
+  # the slope of this line is mathematically identical to the Global Moran's I index
   ggplot2::geom_smooth(method = "lm", formula = y ~ x, color = "#111111", se = TRUE, linewidth = 1) +
-  
+
+  # labels
   ggplot2::labs(
     title = paste0("Moran's I (Index: ",  moran_shootings$estimate[1], ")"),
     x = "Shootings (Standardized Deviation from the Mean)",
     y = "Spatial Lag (Neighbor Average Deviation)",
     caption = "Note: The spatial clustering of shootings is statistically different from random chance (p < 0.001)"
     ) +
-  
+
+  # theme
   ggplot2::theme_minimal() +
   ggplot2::theme(
     plot.title = ggplot2::element_text(face = "bold", size = 12),
