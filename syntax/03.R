@@ -86,7 +86,7 @@ fig03 <- ggplot2::ggplot() +
     color = "#111111",     
     size = 2, 
     ggplot2::aes(stroke = homicides * 0.5), # scale the 'X' marker thickness by cumulative number of homicides
-    show.legend = FALSE    # Keeps the focus on your unified shooting scale
+    show.legend = FALSE
     ) +
   # scale the stroke/thickness without error
   ggplot2::scale_linewidth_continuous(range = c(1, 3.5), name = "Fatal Homicides") + 
