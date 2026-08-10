@@ -164,7 +164,7 @@ T_years         <- length(unique(panels$year))          # N = 22 (2004-2025)
 
 # neighbour weights matrix from polygons
 
-  # first, sort the downloaded city polygon layer alphabetically by neighborhood name (AREA_NA7)  to guarantee it matches the sorting of your panel data exactly.
+  # first, sort the downloaded city polygon layer alphabetically by neighborhood name to guarantee it matches the sorting of the panel data
   xy <- to_boundary %>% dplyr::arrange(AREA_NA7)
 
   # extract touching borders from the verified polygon geometries
