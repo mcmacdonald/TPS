@@ -121,10 +121,17 @@ fig03 <- ggplot2::ggplot(mvt_annual) +
     oob = scales::squish
     ) +
   ggplot2::facet_wrap(~ year) +
-  ggplot2::labs(title = "MVTs (non-residential) per 10,000 population by census tract", fill = "MVTs") +
-  ggplot2::theme_void() +
-  ggplot2::theme(axis.text = ggplot2::element_blank(), axis.ticks = ggplot2::element_blank())
-print(fig03)
+  ggplot2::labs(
+    title = "MVTs per 10,000 population, Toronto census tracts", 
+    caption = "Note: Spatial maps illustrate variations in non-residential MVTs across Toronto census tracts (N=585), 2014-25",
+    fill = "MVTs"
+    ) +
+  ggplot2::theme_classic() +
+  ggplot2::theme(
+    axis.line = ggplot2::element_blank(),
+    axis.text = ggplot2::element_blank(), 
+    axis.ticks = ggplot2::element_blank()
+    )
 
 # output figure
 output(
