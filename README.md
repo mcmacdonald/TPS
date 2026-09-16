@@ -3,7 +3,7 @@ This repository contains .R code to replicate geospatial analysis of non-residen
 
 I construct an artificial neural network (ANN) to predict variations in number of MVTs per 10,000 population across Toronto's 585 census tracts that includes: spatially weighted measures for MVTs, tract-level and spatially weighted measures for fatal and non-fatal shootings, population density, and measures that control for neighbourhood ecology.
 
-File summary:
+Here is a summary of what each syntax file does:
 1) download TPS incident-level crime data from Toronto Open Data
 2) join together shootings and homicide incident data and plot spatial variations in fatal and non-fatal shootings
 3) clean MVTs incident level data to ready it for analysis
