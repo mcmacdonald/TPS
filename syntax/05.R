@@ -115,7 +115,7 @@ fig03 <- ggplot2::ggplot(mvt_annual) +
   ggplot2::geom_sf(ggplot2::aes(fill = mvt_nonresidential), color = "grey40", linewidth = 0.1) +
   ggplot2::scale_fill_gradient(
     low = "white", 
-    high = "darkred", 
+    high = "#2c7bb9", 
     na.value = "grey90",
     limits = c(0, 200), 
     oob = scales::squish
